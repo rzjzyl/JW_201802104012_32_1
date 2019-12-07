@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
-@WebServlet("/logout")
+@WebServlet("/logout.ctl")
 public class LogoutController extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session  = request.getSession();
@@ -18,6 +18,7 @@ public class LogoutController extends HttpServlet {
 //        request.getRequestDispatcher("/WEB-INF/pages/login/login.jsp").forward(request,response);
         if (session!=null){
             session.invalidate();
+            request.setAttribute("message","您已经安全退出");
         }
    }
 }

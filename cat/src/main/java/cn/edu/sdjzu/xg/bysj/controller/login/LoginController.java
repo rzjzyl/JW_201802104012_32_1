@@ -2,7 +2,9 @@ package cn.edu.sdjzu.xg.bysj.controller.login;
 
 import cn.edu.sdjzu.xg.bysj.domain.User;
 import cn.edu.sdjzu.xg.bysj.service.UserService;
+import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
+import util.JSONUtil;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -18,14 +20,17 @@ import java.util.logging.Logger;
 public class LoginController extends HttpServlet {
 //    private static final Logger logger = LogManager.getLogger();
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
         throws ServletException, IOException{
-        String username = request.getParameter("username");
-        String password = request.getParameter("password");
+//        String username = request.getParameter("username");
+//        String password = request.getParameter("password");
+        String user_json = JSONUtil.getJSON(request);
+        //将JSON字串解析为Teacher对象
+        User userToCheck = JSON.parseObject(user_json,User.class);
         //创建JSon对象message 以便往前端响应信息
         JSONObject message = new JSONObject();
         try {
-            User loggedUser = UserService.getInstance().login(username,password);
+            User loggedUser = UserService.getInstance().login(userToCheck.getUsername(),userToCheck.getPassword());
             if (loggedUser!=null){
                 message.put("message","登陆成功");
                 HttpSession session = request.getSession();
@@ -44,5 +49,4 @@ public class LoginController extends HttpServlet {
             e.printStackTrace();
         }
     }
-
 }

@@ -39,7 +39,7 @@ public class Filter00_Encoding implements Filter {
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain)
             throws IOException, ServletException {
         //打印提示信息
-        System.out.println("开始 Filter 0 -encoding begins");
+        System.out.println("开始 Filter 00 -encoding begins");
         //强制类型转换成HttpServletRequest类型
         HttpServletRequest request = (HttpServletRequest)servletRequest;
         HttpServletResponse response = (HttpServletResponse)servletResponse;
@@ -62,6 +62,6 @@ public class Filter00_Encoding implements Filter {
         }
         //执行其他过滤器，若过滤器已经执行完毕，则执行原请求
         filterChain.doFilter(servletRequest,servletResponse);
-        System.out.println("结束 Filter 0 - encoding ends");
+        System.out.println("结束 Filter 00 - encoding ends");
     }
 }

@@ -41,7 +41,7 @@ public class Filter10_Date implements Filter {
     @Override
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
         //打印提示信息
-        System.out.println("开始 Filter 1 -encoding begins");
+        System.out.println("开始 Filter 10 -encoding begins");
         //强制类型转换成HttpServletRequest类型
         HttpServletRequest request = (HttpServletRequest)servletRequest;
         //打印被请求的资源名称和请求时间
@@ -49,6 +49,6 @@ public class Filter10_Date implements Filter {
         //执行其他过滤器，若过滤器已经执行完毕，则执行原请求
         filterChain.doFilter(servletRequest,servletResponse);
         //打印提示信息
-        System.out.println("结束 Filter 1 - encoding ends");
+        System.out.println("结束 Filter 10 - encoding ends");
     }
 }
